@@ -47,6 +47,7 @@ services:
       - /var/www/html/themes
       - /var/www/html/sites
       - ./settings.php:/tmp/settings.php
+      - php-sock:/sock
     environment: 
       DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
       DRUPAL_DATABASE_PORT: 3306
@@ -59,7 +60,7 @@ services:
       - external
 
   httpd:
-    image: centos/httpd
+    image: bitnami/apache:latest
     container_name: httpd.m5l
     hostname: httpd.m5l
     ports:
@@ -69,6 +70,9 @@ services:
       - drupal
     volumes:
       - drupal-data:/drupal-data
+      # - ./apache-drupal-certs:/certs
+      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
+      - php-sock:/sock
     networks:
       - external
 
@@ -80,3 +84,4 @@ networks:
 
 volumes:
   drupal-data:
+  php-sock:
