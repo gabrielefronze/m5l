@@ -74,7 +74,7 @@ services:
     volumes:
       - ./certbot-etc:/etc/letsencrypt
       - ./drupal-data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mg08xl.to.infn.it
+    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it
 
 networks:
   external:
