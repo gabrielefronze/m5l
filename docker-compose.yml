@@ -53,9 +53,14 @@ services:
       - external
   
   httpd:
-    image: httpd:2.4.46-alpine
+    image: bitnami/apache:latest
     container_name: httpd.m5l
     hostname: httpd.m5l
+    ports:
+      - '80:8081'
+      - '443:8443'
+    environment:
+      - APACHE_HTTP_PORT_NUMBER=8081
     depends_on:
       - drupal
     volumes:
