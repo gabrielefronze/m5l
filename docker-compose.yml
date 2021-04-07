@@ -10,7 +10,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     networks:
       - internal
 
@@ -39,7 +39,7 @@ services:
     depends_on: 
       - mysql
     volumes:
-      - ./drupal-data:/var/www/html
+      - drupal-data:/var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
@@ -66,9 +66,9 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./drupal-data:/var/www/html
+      - drupal-data:/var/www/html
       - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
-      - ./certbot-etc:/etc/letsencrypt
+      - certbot-etc:/etc/letsencrypt
     networks:
       - internal
       - external
@@ -79,8 +79,8 @@ services:
     image: certbot/certbot
     container_name: certbot.m5l
     volumes:
-      - ./certbot-etc:/etc/letsencrypt
-      - ./drupal-data:/var/www/html
+      - certbot-etc:/etc/letsencrypt
+      - drupal-data:/var/www/html
     command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it -d www.mag08xl.to.infn.it
 
       # httpd:
@@ -104,3 +104,8 @@ networks:
     driver: bridge
   internal:
     driver: bridge
+
+volumes:
+  drupal-data:
+  db-data:
+  certbot-etc:
