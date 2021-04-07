@@ -33,7 +33,7 @@ services:
       - external
 
   drupal:
-    image: drupal:7.78-php7.4
+    image: drupal:7.78-php7.4-apache
     container_name: drupal.m5l
     hostname: drupal.m5l
     depends_on: 
@@ -41,12 +41,13 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
       - /var/www/html/sites
       - ./settings.php:/tmp/settings.php
+      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     environment: 
       DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
       DRUPAL_DATABASE_PORT: 3306
@@ -56,22 +57,6 @@ services:
       DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
     networks:
       - internal
-      - external
-
-  httpd:
-    image: bitnami/apache:latest
-    container_name: httpd.m5l
-    hostname: httpd.m5l
-    ports:
-      - '80:8080'
-      - '443:8443'
-    depends_on:
-      - drupal
-    volumes:
-      - drupal-data:/drupal-data
-      # - ./apache-drupal-certs:/certs
-      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
-    networks:
       - external
 
 networks:
