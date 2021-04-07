@@ -23,6 +23,8 @@ services:
     hostname: drupal.m5l
     depends_on:
       - mysql
+    ports:
+      - 8080:80
     networks:
       - internal
       - external
@@ -35,7 +37,6 @@ services:
     hostname: webserver.m5l
     depends_on:
       - drupal
-    restart: unless-stopped
     ports:
       - 80:80
     volumes:
