@@ -12,7 +12,7 @@ services:
     links:
       - "mysql:mysql.m5l"
     volumes:
-      - drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html
       - "./settings.php:/tmp/settings.php"
   
   mysql:
@@ -31,6 +31,6 @@ services:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - certbot-etc:/etc/letsencrypt
-      - drupal-data:/var/www/html
+      - ./certbot-etc:/etc/letsencrypt
+      - ./drupal-data:/var/www/html
     command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d m5l.to.infn.it -d www.m5l.to.infn.it
