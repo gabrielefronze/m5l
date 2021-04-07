@@ -2,10 +2,23 @@ version: "3.9"
 services:
   drupal7:
     image: "drupal:7.78-php7.4-apache"
+    container_name: drupal7.m5l
+    hostname: drupal7.m5l
     ports:
       - "80:80"
       - "443:443"
     links:
-      - "mysql:mysql"
+      - "mysql:mysql.m5l"
+    volumes:
+      - "/widen/m5lsite/:/m5lsite"
+      - "/widen/m5ldata:/m5ldata"
+      - "./settings.php:/tmp/settings.php"
   mysql:
     image: "mysql:8.0.23"
+    container_name: mysql.m5l
+    hostname: mysql.m5l
+    environment: 
+      - MYSQL_DATABASE="db_m5l_drupal_1"
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_USER="drupaluser_m5l"
+      - MYSQL_PASSWORD="mySQLm5l"
