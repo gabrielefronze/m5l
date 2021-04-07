@@ -41,7 +41,7 @@ services:
       - 80:80
     volumes:
       - drupal-data:/var/www/html
-      - ./nginx-drupal.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-drupal7.conf:/etc/nginx/conf.d/default.conf
     networks:
       - external
 
