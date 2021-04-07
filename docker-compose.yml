@@ -27,7 +27,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 81:80
+      - 81:81
     networks:
       - internal
       - external
