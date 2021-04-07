@@ -63,7 +63,7 @@ services:
       - drupal
     volumes:
       - ./drupal-data/web:/app
-      - ./apache-drupal-certs:/certs
+      # - ./apache-drupal-certs:/certs
       - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     networks:
       - external
