@@ -34,8 +34,8 @@ services:
 
   drupal:
     image: drupal:7.78-php7.4
-    container_name: drupal7.m5l
-    hostname: drupal7.m5l
+    container_name: drupal.m5l
+    hostname: drupal.m5l
     depends_on: 
       - mysql
     volumes:
