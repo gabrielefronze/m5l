@@ -39,7 +39,11 @@ services:
     depends_on: 
       - mysql
     volumes:
-      - ./drupal-data/:/var/www/html
+      # - ./drupal-data:/var/www/html
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites
       - ./settings.php:/tmp/settings.php
     environment: 
       DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
