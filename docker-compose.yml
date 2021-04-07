@@ -53,7 +53,7 @@ services:
       - external
   
   httpd:
-    image: httpd:2.4.46-alpine
+    build: ./apache-ssl.Dockerfile
     container_name: httpd.m5l
     hostname: httpd.m5l
     depends_on:
