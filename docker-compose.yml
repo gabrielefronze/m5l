@@ -70,6 +70,7 @@ services:
       - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
       - ./certbot-etc:/etc/letsencrypt
     networks:
+      - internal
       - external
 
   certbot:
