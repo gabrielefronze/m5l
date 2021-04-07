@@ -24,13 +24,7 @@ services:
       - internal
       - external
     volumes:
-      - drupal-data:/var/www/html
-      - ./drupal-data:/var/www/html2
-      - /var/www/html
-      - /var/www/html/modules
-      - /var/www/html/profiles
-      - /var/www/html/themes
-      - /var/www/html/sites
+      - ./drupal-data:/var/www/html
 
   webserver:
     image: nginx:1.17.4-alpine
@@ -41,7 +35,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html
       - ./certs:/certs
       - ./nginx-drupal7.conf:/etc/nginx/conf.d/default.conf
     networks:
@@ -52,6 +46,3 @@ networks:
     driver: bridge
   internal:
     driver: bridge
-
-volumes:
-  drupal-data:
