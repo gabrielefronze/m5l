@@ -5,8 +5,11 @@ services:
     image: mysql:8.0
     container_name: mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
-    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
     networks:
@@ -17,7 +20,6 @@ services:
     container_name: drupal
     depends_on:
       - mysql
-    restart: unless-stopped
     networks:
       - internal
       - external
@@ -28,10 +30,15 @@ services:
     image: nginx:1.17.4-alpine
     container_name: webserver
     depends_on:
-      - drupal
-    restart: unless-stopped
+      - drupal\
     ports:
       - 80:80
+    environment:
+      DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
+      DRUPAL_DATABASE_PORT: 3306
+      DRUPAL_DATABASE_NAME: ${DB_NAME}
+      DRUPAL_DATABASE_USERNAME: ${DB_USERNAME}
+      DRUPAL_DATABASE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - drupal-data:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
