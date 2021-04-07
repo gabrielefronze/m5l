@@ -19,6 +19,6 @@ services:
     hostname: mysql.m5l
     environment: 
       - MYSQL_DATABASE="db_m5l_drupal_1"
-      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ROOT_PASSWORD="mySQLm5l"
       - MYSQL_USER="drupaluser_m5l"
       - MYSQL_PASSWORD="mySQLm5l"
