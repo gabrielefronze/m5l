@@ -26,6 +26,17 @@ services:
       - DRUPAL_DATABASE_PASSWORD: mySQLm5l
       - DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
   
+  php-my-admin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql.m5l
+      PMA_USER: drupaluser_m5l
+      PMA_PASSWORD: mySQLm5l
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    ports:
+     - "81:80"
+
   mysql:
     image: mysql:8.0.23
     container_name: mysql.m5l
