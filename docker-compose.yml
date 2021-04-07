@@ -53,7 +53,7 @@ services:
       - external
   
   httpd:
-    build: ./apache-ssl.Dockerfile
+    build: ./httpd-ssl.Dockerfile
     container_name: httpd.m5l
     hostname: httpd.m5l
     depends_on:
