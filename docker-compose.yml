@@ -39,7 +39,7 @@ services:
     depends_on: 
       - mysql
     volumes:
-      # - ./drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
