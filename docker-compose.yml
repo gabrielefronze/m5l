@@ -24,7 +24,7 @@ services:
       - internal
       - external
     volumes:
-      - ./drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html:z
 
   webserver:
     image: nginx:1.17.4-alpine
@@ -35,7 +35,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html:ro
       - ./certs:/certs
       - ./nginx-drupal7.conf:/etc/nginx/conf.d/default.conf
     networks:
