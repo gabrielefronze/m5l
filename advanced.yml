@@ -30,7 +30,7 @@ services:
     image: nginx:1.17.4-alpine
     container_name: webserver
     depends_on:
-      - drupal\
+      - drupal
     ports:
       - 80:80
     environment:
