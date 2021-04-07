@@ -64,7 +64,7 @@ services:
     volumes:
       - ./drupal-data/:/var/www/html
       - ./apache-drupal-certs:/certs
-      - ./apache-drupal.conf:/opt/bitnami/apache/conf/httpd.conf
+      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     networks:
       - external
 
