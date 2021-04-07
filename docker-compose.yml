@@ -38,6 +38,8 @@ services:
     hostname: drupal.m5l
     depends_on: 
       - mysql
+    ports:
+      - '8080:80'
     volumes:
       - drupal-data:/var/www/html
       - /var/www/html/modules
