@@ -23,6 +23,12 @@ services:
     networks:
       - internal
       - external
+    environment:
+      DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
+      DRUPAL_DATABASE_PORT: 3306
+      DRUPAL_DATABASE_NAME: ${DB_NAME}
+      DRUPAL_DATABASE_USERNAME: ${DB_USERNAME}
+      DRUPAL_DATABASE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - drupal-data:/var/www/html
 
@@ -33,15 +39,9 @@ services:
       - drupal
     ports:
       - 80:80
-    environment:
-      DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
-      DRUPAL_DATABASE_PORT: 3306
-      DRUPAL_DATABASE_NAME: ${DB_NAME}
-      DRUPAL_DATABASE_USERNAME: ${DB_USERNAME}
-      DRUPAL_DATABASE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - drupal-data:/var/www/html
-      - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx-drupal.conf:/etc/nginx/conf.d/default.conf
     networks:
       - external
 
