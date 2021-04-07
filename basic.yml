@@ -20,7 +20,7 @@ services:
       - 8080:80
     volumes:
       - ./drupal-data:/var/www/html:z
-     - /var/www/html/modules
+      - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
       - /var/www/html/sites
