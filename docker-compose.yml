@@ -16,6 +16,8 @@ services:
 
   php-my-admin:
     image: phpmyadmin/phpmyadmin
+    container_name: pma.m5l
+    hostname: pma.m5l
     environment:
       PMA_HOST: ${DB_HOST_NAME}
       PMA_USER: ${DB_USERNAME}
@@ -62,6 +64,7 @@ services:
     volumes:
       - ./drupal-data/:/var/www/html
       - ./apache-drupal.conf:/usr/local/apache2/conf/httpd.conf
+      - ./apache-drupal-logs:/var/log/httpd
       - ./certbot-etc:/etc/letsencrypt
     networks:
       - external
