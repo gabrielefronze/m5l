@@ -33,14 +33,11 @@ services:
       - external
 
   drupal:
-    image: drupal:7.78-php7.4-apache
+    image: drupal:7.78-php7.4
     container_name: drupal7.m5l
     hostname: drupal7.m5l
     depends_on: 
       - mysql
-    ports:
-      - '80:80'
-      - '443:443'
     volumes:
       - ./drupal-data:/var/www/html
       - /var/www/html/modules
@@ -58,8 +55,34 @@ services:
     networks:
       - internal
       - external
-  
-  # httpd:
+    
+  webserver:
+    image: nginx:1.17.4-alpine
+    container_name: nginx.m5l
+    hostname: nginx.m5l
+    depends_on:
+      - drupal
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./drupal-data:/var/www/html
+      - ./nginx-drupal.conf:/etc/nginx/conf.d
+      - ./certbot-etc:/etc/letsencrypt
+    networks:
+      - external
+
+certbot:
+    depends_on:
+      - webserver
+    image: certbot/certbot
+    container_name: certbot.m5l
+    volumes:
+      - ./certbot-etc:/etc/letsencrypt
+      - ./drupal-data:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it -d www.mag08xl.to.infn.it
+
+      # httpd:
   #   image: bitnami/apache:latest
   #   container_name: httpd.m5l
   #   hostname: httpd.m5l
