@@ -1,60 +1,83 @@
 version: "3.3"
 services:
-
-  drupal:
-    image: drupal:7.78-php7.4-apache
-    container_name: drupal7.m5l
-    hostname: drupal7.m5l
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on: 
-      - mysql
-    links:
-      - "mysql:mysql.m5l"
-    volumes:
-      - ./drupal-data/modules:/var/www/html/modules
-      - ./drupal-data/profiles:/var/www/html/profiles
-      - ./drupal-data/themes:/var/www/html/themes
-      - ./drupal-data/sites:/var/www/html/sites
-      - "./settings.php:/tmp/settings.php"
+  mysql:
+    image: mysql:8.0.23
+    container_name: ${DB_HOST_NAME}
+    hostname: ${DB_HOST_NAME}
     environment: 
-      - DRUPAL_DATABASE_HOST: mysql.m5l
-      - DRUPAL_DATABASE_PORT: 3306
-      - DRUPAL_DATABASE_NAME: db_m5l_drupal_1
-      - DRUPAL_DATABASE_USERNAME: drupaluser_m5l
-      - DRUPAL_DATABASE_PASSWORD: mySQLm5l
-      - DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
-  
+      - MYSQL_DATABASE: ${DB_NAME}
+      - MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      - MYSQL_USER: ${DB_USERNAME}
+      - MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - internal
+
   php-my-admin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: mysql.m5l
-      PMA_USER: drupaluser_m5l
-      PMA_PASSWORD: mySQLm5l
+      PMA_HOST: ${DB_HOST_NAME}
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
       PHP_UPLOAD_MAX_FILESIZE: 1G
       PHP_MAX_INPUT_VARS: 1G
+    depends_on:
+      - mysql
     ports:
-     - "81:80"
+      - 81:80
+    networks:
+      - internal
+      - external
 
-  mysql:
-    image: mysql:8.0.23
-    container_name: mysql.m5l
-    hostname: mysql.m5l
-    environment: 
-      - MYSQL_DATABASE: db_m5l_drupal_1
-      - MYSQL_ROOT_PASSWORD: mySQLm5l
-      - MYSQL_USER: drupaluser_m5l
-      - MYSQL_PASSWORD: mySQLm5l
+  drupal:
+    image: drupal:7.78-php7.4
+    container_name: drupal7.m5l
+    hostname: drupal7.m5l
+    depends_on: 
+      - mysql
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./drupal-data/:/var/www/html
+      - ./settings.php:/tmp/settings.php
+    environment: 
+      - DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
+      - DRUPAL_DATABASE_PORT: 3306
+      - DRUPAL_DATABASE_NAME: ${DB_NAME}
+      - DRUPAL_DATABASE_USERNAME: ${DB_USERNAME}
+      - DRUPAL_DATABASE_PASSWORD: ${DB_PASSWORD}
+      - DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
+    networks:
+      - internal
+      - external
   
+  httpd:
+    image: httpd:2.4.46-alpine
+    container_name: httpd.m5l
+    hostname: httpd.m5l
+    depends_on:
+      - drupal
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./drupal-data/:/var/www/html
+      - ./apache-drupal.conf:/usr/local/apache2/conf/httpd.conf
+      - ./certbot-etc:/etc/letsencrypt
+    networks:
+      - external
+
   certbot:
     depends_on:
-      - drupal7
+      - httpd
     image: certbot/certbot
     container_name: certbot
     volumes:
       - ./certbot-etc:/etc/letsencrypt
       - ./drupal-data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d to.infn.it
+    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mg08xl.to.infn.it
+
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
