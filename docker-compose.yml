@@ -58,9 +58,6 @@ services:
     hostname: httpd.m5l
     depends_on:
       - drupal
-    ports:
-      - 8080:80
-      - 8443:443
     volumes:
       - ./drupal-data/:/var/www/html
       - ./apache-drupal.conf:/usr/local/apache2/conf/httpd.conf
