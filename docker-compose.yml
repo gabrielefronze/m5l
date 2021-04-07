@@ -59,7 +59,7 @@ services:
       - external
 
   httpd:
-    image: bitnami/apache:latest
+    image: centos/httpd
     container_name: httpd.m5l
     hostname: httpd.m5l
     ports:
@@ -69,8 +69,6 @@ services:
       - drupal
     volumes:
       - drupal-data:/drupal-data
-      # - ./apache-drupal-certs:/certs
-      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     networks:
       - external
 
