@@ -18,7 +18,7 @@ services:
       - internal
 
   drupal:
-    image: drupal:7.78-php7.4
+    image: drupal:php7.4-fpm-alpine
     container_name: drupal.m5l
     hostname: drupal.m5l
     depends_on:
