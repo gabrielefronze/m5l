@@ -56,7 +56,6 @@ services:
     build:
       dockerfile: ./httpd-ssl.Dockerfile
       dir: ./
-      image: httpd-ssl.m5l
     container_name: httpd.m5l
     hostname: httpd.m5l
     depends_on:
