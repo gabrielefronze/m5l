@@ -41,7 +41,7 @@ services:
       - 80:80
     volumes:
       - drupal-data:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx-drupal.conf:/etc/nginx/conf.d
       - certbot-etc:/etc/letsencrypt
     networks:
       - external
