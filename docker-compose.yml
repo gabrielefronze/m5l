@@ -57,15 +57,14 @@ services:
     container_name: httpd.m5l
     hostname: httpd.m5l
     ports:
-      - '80:8081'
+      - '80:8080'
       - '443:8443'
-    environment:
-      - APACHE_HTTP_PORT_NUMBER=8081
     depends_on:
       - drupal
     volumes:
       - ./drupal-data/:/var/www/html
-      - ./apache-drupal.conf:/usr/local/apache2/conf/httpd.conf
+      - ./apache-drupal-certs:/certs
+      - ./apache-drupal.conf:/opt/bitnami/apache/conf/httpd.conf
       - ./certbot-etc:/etc/letsencrypt
     networks:
       - external
