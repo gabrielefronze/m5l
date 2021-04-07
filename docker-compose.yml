@@ -62,7 +62,7 @@ services:
     depends_on:
       - drupal
     volumes:
-      - ./drupal-data/:/var/www/html
+      - ./drupal-data/web:/app
       - ./apache-drupal-certs:/certs
       - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     networks:
