@@ -20,9 +20,10 @@ services:
       - 8080:80
     volumes:
       - ./drupal-data:/var/www/html:z
-      - /var/www/html
+     - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
+      - /var/www/html/sites
       # this takes advantage of the feature in Docker that a new anonymous
       # volume (which is what we're creating here) will be initialized with the
       # existing content of the image at the same location
