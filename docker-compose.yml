@@ -41,7 +41,7 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - ./drupal-data:/var/www/html
+      - drupal-data:/var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
@@ -68,7 +68,7 @@ services:
   #     - '80:80'
   #     - '443:443'
   #   volumes:
-  #     - ./drupal-data:/var/www/html
+  #     - drupal-data:/var/www/html
   #     - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
   #     - certbot-etc:/etc/letsencrypt
   #   networks:
@@ -82,7 +82,7 @@ services:
   #   container_name: certbot.m5l
   #   volumes:
   #     - certbot-etc:/etc/letsencrypt
-  #     - ./drupal-data:/var/www/html
+  #     - drupal-data:/var/www/html
   #   command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it -d www.mag08xl.to.infn.it
 
   httpd:
@@ -95,7 +95,7 @@ services:
     depends_on:
       - drupal
     volumes:
-      - ./drupal-data:/drupal-data
+      - drupal-data:/drupal-data
       # - ./apache-drupal-certs:/certs
       - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
     networks:
@@ -106,3 +106,6 @@ networks:
     driver: bridge
   internal:
     driver: bridge
+
+volumes:
+  drupal-data:
