@@ -26,6 +26,7 @@ services:
     volumes:
       - drupal-data:/var/www/html
       - ./drupal-data:/var/www/html2
+      - /var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
