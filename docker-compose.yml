@@ -10,7 +10,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
     networks:
       - internal
 
@@ -41,7 +41,7 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - drupal-data:/var/www/html
+      - ./drupal-data:/var/www/html
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
@@ -58,56 +58,51 @@ services:
       - internal
       - external
     
-  webserver:
-    image: nginx:1.17.4-alpine
-    container_name: nginx.m5l
-    hostname: nginx.m5l
-    depends_on:
-      - drupal
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - drupal-data:/var/www/html
-      - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
-      - certbot-etc:/etc/letsencrypt
-    networks:
-      - internal
-      - external
-
-  certbot:
-    depends_on:
-      - webserver
-    image: certbot/certbot
-    container_name: certbot.m5l
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - drupal-data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it -d www.mag08xl.to.infn.it
-
-      # httpd:
-  #   image: bitnami/apache:latest
-  #   container_name: httpd.m5l
-  #   hostname: httpd.m5l
-  #   ports:
-  #     - '80:8080'
-  #     - '443:8443'
+  # webserver:
+  #   image: nginx:1.17.4-alpine
+  #   container_name: nginx.m5l
+  #   hostname: nginx.m5l
   #   depends_on:
   #     - drupal
+  #   ports:
+  #     - '80:80'
+  #     - '443:443'
   #   volumes:
-  #     - ./drupal-data:/drupal-data
-  #     # - ./apache-drupal-certs:/certs
-  #     - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
+  #     - ./drupal-data:/var/www/html
+  #     - ./nginx-drupal.conf:/etc/nginx/conf.d/nginx.conf
+  #     - certbot-etc:/etc/letsencrypt
   #   networks:
+  #     - internal
   #     - external
+
+  # certbot:
+  #   depends_on:
+  #     - webserver
+  #   image: certbot/certbot
+  #   container_name: certbot.m5l
+  #   volumes:
+  #     - certbot-etc:/etc/letsencrypt
+  #     - ./drupal-data:/var/www/html
+  #   command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it -d www.mag08xl.to.infn.it
+
+  httpd:
+    image: bitnami/apache:latest
+    container_name: httpd.m5l
+    hostname: httpd.m5l
+    ports:
+      - '80:8080'
+      - '443:8443'
+    depends_on:
+      - drupal
+    volumes:
+      - ./drupal-data:/drupal-data
+      # - ./apache-drupal-certs:/certs
+      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
+    networks:
+      - external
 
 networks:
   external:
     driver: bridge
   internal:
     driver: bridge
-
-volumes:
-  drupal-data:
-  db-data:
-  certbot-etc:
