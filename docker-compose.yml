@@ -33,11 +33,14 @@ services:
       - external
 
   drupal:
-    image: drupal:7.78-php7.4
+    image: drupal:7.78-php7.4-apache
     container_name: drupal7.m5l
     hostname: drupal7.m5l
     depends_on: 
       - mysql
+    ports:
+      - '80:80'
+      - '443:443'
     volumes:
       - ./drupal-data:/var/www/html
       - /var/www/html/modules
@@ -56,21 +59,21 @@ services:
       - internal
       - external
   
-  httpd:
-    image: bitnami/apache:latest
-    container_name: httpd.m5l
-    hostname: httpd.m5l
-    ports:
-      - '80:8080'
-      - '443:8443'
-    depends_on:
-      - drupal
-    volumes:
-      - ./drupal-data:/drupal-web
-      # - ./apache-drupal-certs:/certs
-      - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
-    networks:
-      - external
+  # httpd:
+  #   image: bitnami/apache:latest
+  #   container_name: httpd.m5l
+  #   hostname: httpd.m5l
+  #   ports:
+  #     - '80:8080'
+  #     - '443:8443'
+  #   depends_on:
+  #     - drupal
+  #   volumes:
+  #     - ./drupal-data:/drupal-data
+  #     # - ./apache-drupal-certs:/certs
+  #     - ./apache-drupal.conf:/vhosts/my_vhost.conf:ro
+  #   networks:
+  #     - external
 
 networks:
   external:
