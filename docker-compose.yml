@@ -5,7 +5,7 @@ services:
     container_name: drupal7.m5l
     hostname: drupal7.m5l
     ports:
-      - "80:80"
+      - "8080:80"
       - "443:443"
     links:
       - "mysql:mysql.m5l"
