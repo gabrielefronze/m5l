@@ -12,9 +12,9 @@ services:
     links:
       - "mysql:mysql.m5l"
     volumes:
-      - "/widen/m5lsite/:/m5lsite"
-      - "/widen/m5ldata:/m5ldata"
+      - drupal-data:/var/www/html
       - "./settings.php:/tmp/settings.php"
+  
   mysql:
     image: "mysql:8.0.23"
     container_name: mysql.m5l
@@ -24,3 +24,13 @@ services:
       - MYSQL_ROOT_PASSWORD="mySQLm5l"
       - MYSQL_USER="drupaluser_m5l"
       - MYSQL_PASSWORD="mySQLm5l"
+  
+  certbot:
+    depends_on:
+      - drupal7
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - drupal-data:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d m5l.to.infn.it -d www.m5l.to.infn.it
