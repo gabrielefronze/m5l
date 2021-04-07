@@ -2,13 +2,13 @@ version: "3.3"
 services:
   mysql:
     image: mysql:8.0.23
-    container_name: ${DB_HOST_NAME}
-    hostname: ${DB_HOST_NAME}
+    container_name: $DB_HOST_NAME
+    hostname: $DB_HOST_NAME
     environment: 
-      - MYSQL_DATABASE: ${DB_NAME}
-      - MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      - MYSQL_USER: ${DB_USERNAME}
-      - MYSQL_PASSWORD: ${DB_PASSWORD}
+      - MYSQL_DATABASE: $DB_NAME
+      - MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      - MYSQL_USER: $DB_USERNAME
+      - MYSQL_PASSWORD: $DB_PASSWORD
     volumes:
       - ./mysql-data:/var/lib/mysql
     networks:
@@ -17,9 +17,9 @@ services:
   php-my-admin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: ${DB_HOST_NAME}
-      PMA_USER: ${DB_USERNAME}
-      PMA_PASSWORD: ${DB_PASSWORD}
+      PMA_HOST: $DB_HOST_NAME
+      PMA_USER: $DB_USERNAME
+      PMA_PASSWORD: $DB_PASSWORD
       PHP_UPLOAD_MAX_FILESIZE: 1G
       PHP_MAX_INPUT_VARS: 1G
     depends_on:
@@ -40,11 +40,11 @@ services:
       - ./drupal-data/:/var/www/html
       - ./settings.php:/tmp/settings.php
     environment: 
-      - DRUPAL_DATABASE_HOST: ${DB_HOST_NAME}
+      - DRUPAL_DATABASE_HOST: $DB_HOST_NAME
       - DRUPAL_DATABASE_PORT: 3306
-      - DRUPAL_DATABASE_NAME: ${DB_NAME}
-      - DRUPAL_DATABASE_USERNAME: ${DB_USERNAME}
-      - DRUPAL_DATABASE_PASSWORD: ${DB_PASSWORD}
+      - DRUPAL_DATABASE_NAME: $DB_NAME
+      - DRUPAL_DATABASE_USERNAME: $DB_USERNAME
+      - DRUPAL_DATABASE_PASSWORD: $DB_PASSWORD
       - DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
     networks:
       - internal
