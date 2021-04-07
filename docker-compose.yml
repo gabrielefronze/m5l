@@ -1,7 +1,8 @@
 version: "3.3"
 services:
-  drupal7:
-    image: "drupal:7.78-php7.4-apache"
+
+  drupal:
+    image: drupal:7.78-php7.4-apache
     container_name: drupal7.m5l
     hostname: drupal7.m5l
     ports:
@@ -12,18 +13,30 @@ services:
     links:
       - "mysql:mysql.m5l"
     volumes:
-      - ./drupal-data:/var/www/html
+      - ./drupal-data/modules:/var/www/html/modules
+      - ./drupal-data/profiles:/var/www/html/profiles
+      - ./drupal-data/themes:/var/www/html/themes
+      - ./drupal-data/sites:/var/www/html/sites
       - "./settings.php:/tmp/settings.php"
+    environment: 
+      - DRUPAL_DATABASE_HOST: mysql.m5l
+      - DRUPAL_DATABASE_PORT: 3306
+      - DRUPAL_DATABASE_NAME: db_m5l_drupal_1
+      - DRUPAL_DATABASE_USERNAME: drupaluser_m5l
+      - DRUPAL_DATABASE_PASSWORD: mySQLm5l
+      - DRUPAL_HASH_SALT: db0de8a1556ba5348f87cfc992cd2c9641713d46e9412c8b05
   
   mysql:
-    image: "mysql:8.0.23"
+    image: mysql:8.0.23
     container_name: mysql.m5l
     hostname: mysql.m5l
     environment: 
-      - MYSQL_DATABASE="db_m5l_drupal_1"
-      - MYSQL_ROOT_PASSWORD="mySQLm5l"
-      - MYSQL_USER="drupaluser_m5l"
-      - MYSQL_PASSWORD="mySQLm5l"
+      - MYSQL_DATABASE: db_m5l_drupal_1
+      - MYSQL_ROOT_PASSWORD: mySQLm5l
+      - MYSQL_USER: drupaluser_m5l
+      - MYSQL_PASSWORD: mySQLm5l
+    volumes:
+      - ./mysql-data:/var/lib/mysql
   
   certbot:
     depends_on:
