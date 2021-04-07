@@ -25,6 +25,10 @@ services:
       - external
     volumes:
       - ./drupal-data:/var/www/html
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites
 
   webserver:
     image: nginx:1.17.4-alpine
