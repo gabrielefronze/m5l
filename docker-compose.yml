@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
   drupal7:
     image: "drupal:7.78-php7.4-apache"
