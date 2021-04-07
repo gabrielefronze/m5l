@@ -64,7 +64,6 @@ services:
     volumes:
       - ./drupal-data/:/var/www/html
       - ./apache-drupal.conf:/usr/local/apache2/conf/httpd.conf
-      - ./apache-drupal-logs:/var/log/httpd
       - ./certbot-etc:/etc/letsencrypt
     networks:
       - external
