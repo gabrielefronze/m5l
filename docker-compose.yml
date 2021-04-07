@@ -65,19 +65,8 @@ services:
       - ./drupal-data/:/var/www/html
       - ./apache-drupal-certs:/certs
       - ./apache-drupal.conf:/opt/bitnami/apache/conf/httpd.conf
-      - ./certbot-etc:/etc/letsencrypt
     networks:
       - external
-
-  certbot:
-    depends_on:
-      - httpd
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./certbot-etc:/etc/letsencrypt
-      - ./drupal-data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email cerello@to.infn.it --agree-tos --no-eff-email --staging -d mag08xl.to.infn.it
 
 networks:
   external:
