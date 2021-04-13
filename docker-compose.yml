@@ -25,7 +25,8 @@ services:
     networks:
       - internal
     volumes:
-      - ./m5l-data:/m5l-data:z
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /m5l-data:/m5l-data:z
 
 
   drupal:
@@ -37,7 +38,7 @@ services:
       - external
     volumes:
       - ./drupal-data:/var/www/html:z
-      - ./m5l-data:/m5l-data:z
+      - /m5l-data:/m5l-data:z
 
   webserver:
     image: nginx:1.17.4-alpine
