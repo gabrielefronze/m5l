@@ -19,6 +19,7 @@ services:
     build:
       context: ./
       dockerfile: ./m5l.dockerfile
+    tty: true
     depends_on:
       - mysql
       - drupal
