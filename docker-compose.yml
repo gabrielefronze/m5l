@@ -27,7 +27,6 @@ services:
     networks:
       - internal
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - /widen/m5l-data:/m5l-data:z
 
 
@@ -40,6 +39,7 @@ services:
       - internal
       - external
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./drupal-data:/var/www/html:z
       - /widen/m5l-data:/m5l-data:z
 
