@@ -1,6 +1,5 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
-RUN apt-get install -y epel-release
 RUN apt-get update -y
 RUN apt-get install -y root
 
