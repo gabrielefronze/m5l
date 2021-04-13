@@ -1,6 +1,6 @@
-FROM drupal:7.78-php7.4-fpm-alpine3.12
+FROM drupal:7.78-php7.4-fpm-buster
 
-RUn yum install -y epel-release
+RUN yum install -y epel-release
 RUN yum update -y
 RUN yum install -y root
 
