@@ -1,12 +1,7 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
-RUN apt-get update && apt-get upgrade
-RUN apt-get install php-xml, zip
-RUN apt-get install curl php7-cli git
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require drush/drush
-RUN export PATH="$HOME/.composer/vendor/bin:$PATH"
-RUN source .bashrc
+RUN apt-get update
+RUN apt-get install -y drush
 
 RUN drush dl views
 RUN drush dl admin_menu && drush en admin_menu
