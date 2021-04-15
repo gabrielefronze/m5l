@@ -1,7 +1,8 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
 RUN apt-get update
-RUN apt-get install -y -t lucid-backports drush
+RUN deb http://backports.debian.org/debian-backports squeeze-backports main
+RUN sudo apt-get update && sudo apt-get install drush
 
 RUN drush dl views
 RUN drush dl admin_menu && drush en admin_menu
