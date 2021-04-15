@@ -13,6 +13,6 @@ RUN yum update -y && yum install -y dcmtk-devel
 
 WORKDIR /
 RUN yum -y install --enablerepo="epel" python-pip && yum clean all
-RUN pip install --upgrade pip
-RUN pip install Flask
+RUN pip3 install --upgrade pip3
+RUN pip3 install Flask
 EXPOSE 8888
