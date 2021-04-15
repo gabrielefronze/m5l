@@ -14,7 +14,7 @@ RUN drush dl captcha
 RUN drush dl ckeditor
 # RUN drush dl contrib
 RUN drush dl ctools
-RUN drush dl custom
+# RUN drush dl custom
 RUN drush dl devel
 RUN drush dl ds
 RUN drush dl eck
