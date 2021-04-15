@@ -1,8 +1,8 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
 RUN apt-get update
-RUN apt-get install -y zip unzip curl php7-cli git
-RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get install -y zip unzip curl git
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require drush/drush
 RUN drush status
 
