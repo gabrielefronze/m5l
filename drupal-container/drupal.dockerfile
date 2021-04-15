@@ -8,33 +8,33 @@ RUN ls -l "$HOME/.composer/vendor/bin/drush"
 RUN ln -s "$HOME/.composer/vendor/bin/drush" /usr/bin/drush
 RUN drush status
 
-RUN drush dl views
-RUN drush dl admin_menu && drush en admin_menu
-RUN drush dl captcha && drush en captcha
-RUN drush dl ckeditor && drush en ckeditor
-RUN drush dl contrib && drush en contrib
-RUN drush dl ctools && drush en ctools
-RUN drush dl custom && drush en custom
-RUN drush dl devel && drush en devel
-RUN drush dl ds && drush en ds
-RUN drush dl eck && drush en eck
-RUN drush dl elements && drush en elements
-RUN drush dl entity && drush en entity
-RUN drush dl entityreference && drush en entityreference
-RUN drush dl field_group && drush en field_group
-RUN drush dl field_permissions && drush en field_permissions
-RUN drush dl field_readonly && drush en field_readonly
-RUN drush dl imce && drush en imce
-RUN drush dl imce_mkdir && drush en imce_mkdir
-RUN drush dl jquery_update && drush en jquery_update
-RUN drush dl node_export && drush en node_export
-RUN drush dl nodeaccess && drush en nodeaccess
-RUN drush dl overlay_paths && drush en overlay_paths
-RUN drush dl references && drush en references
-RUN drush dl rules && drush en rules
-RUN drush dl table_element && drush en table_element
-RUN drush dl token && drush en token
-RUN drush dl uuid && drush en uuid
-RUN drush dl views && drush en views
-RUN drush dl views_datasource && drush en views_datasource
-RUN drush dl zurb_responsive_tables && drush en zurb_responsive_tables
+RUN composer require drupal/views
+RUN composer require drupal/admin_menu
+RUN composer require drupal/captcha
+RUN composer require drupal/ckeditor
+RUN composer require drupal/contrib
+RUN composer require drupal/ctools
+RUN composer require drupal/custom
+RUN composer require drupal/devel
+RUN composer require drupal/ds
+RUN composer require drupal/eck
+RUN composer require drupal/elements
+RUN composer require drupal/entity
+RUN composer require drupal/entityreference
+RUN composer require drupal/field_group
+RUN composer require drupal/field_permissions
+RUN composer require drupal/field_readonly
+RUN composer require drupal/imce
+RUN composer require drupal/imce_mkdir
+RUN composer require drupal/jquery_update
+RUN composer require drupal/node_export
+RUN composer require drupal/nodeaccess
+RUN composer require drupal/overlay_paths
+RUN composer require drupal/references
+RUN composer require drupal/rules
+RUN composer require drupal/table_element
+RUN composer require drupal/token
+RUN composer require drupal/uuid
+RUN composer require drupal/views
+RUN composer require drupal/views_datasource
+RUN composer require drupal/zurb_responsive_tables
