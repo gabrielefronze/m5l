@@ -12,7 +12,7 @@ RUN drush dl views
 RUN drush dl admin_menu
 RUN drush dl captcha
 RUN drush dl ckeditor
-RUN drush dl contrib
+# RUN drush dl contrib
 RUN drush dl ctools
 RUN drush dl custom
 RUN drush dl devel
