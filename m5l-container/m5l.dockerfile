@@ -2,7 +2,7 @@ FROM centos:7
 
 RUN yum update -y
 RUN yum install -y epel-release
-RUN yum install cmake3
+RUN yum install -y cmake3
 RUN yum install -y root
 
 WORKDIR /tmp
