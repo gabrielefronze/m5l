@@ -32,9 +32,10 @@ services:
 
 
   drupal:
-    build:
-      context: ./drupal-container
-      dockerfile: ./drupal.dockerfile
+    # build:
+    #   context: ./drupal-container
+    #   dockerfile: ./drupal.dockerfile
+    image: favish/php-5.6-fpm-drupal-7:latest
     container_name: drupal.m5l
     depends_on:
       - mysql
