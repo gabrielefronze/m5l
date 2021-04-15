@@ -28,6 +28,7 @@ services:
       - internal
     volumes:
       - /widen/m5l-data:/m5l-data:z
+      - /root/m5l-source:/m5l-source:z
       - ./m5l-container/m5l-responder.py:/m5l-responder.py
     entrypoint: python3 /m5l-responder.py "root -q -x"
 
