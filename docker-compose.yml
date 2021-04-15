@@ -28,6 +28,7 @@ services:
       - internal
     volumes:
       - /widen/m5l-data:/m5l-data:z
+    entrypoint: /m5l-responder.py "root -q -x"
 
 
   drupal:
@@ -41,7 +42,6 @@ services:
       - internal
       - external
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ./drupal-data:/var/www/html:z
       - /widen/m5l-data:/m5l-data:z
 
