@@ -3,38 +3,38 @@ FROM drupal:7.78-php7.4-fpm-buster
 RUN apt-get update
 RUN apt-get install -y zip unzip curl git
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require drush/drush
+RUN composer global require drush/drush:8.*
 RUN ls -l "$HOME/.composer/vendor/bin/drush"
 RUN ln -s "$HOME/.composer/vendor/bin/drush" /usr/bin/drush
 RUN drush status
 
-RUN composer require drupal/views
-RUN composer require drupal/admin_menu
-RUN composer require drupal/captcha
-RUN composer require drupal/ckeditor
-RUN composer require drupal/contrib
-RUN composer require drupal/ctools
-RUN composer require drupal/custom
-RUN composer require drupal/devel
-RUN composer require drupal/ds
-RUN composer require drupal/eck
-RUN composer require drupal/elements
-RUN composer require drupal/entity
-RUN composer require drupal/entityreference
-RUN composer require drupal/field_group
-RUN composer require drupal/field_permissions
-RUN composer require drupal/field_readonly
-RUN composer require drupal/imce
-RUN composer require drupal/imce_mkdir
-RUN composer require drupal/jquery_update
-RUN composer require drupal/node_export
-RUN composer require drupal/nodeaccess
-RUN composer require drupal/overlay_paths
-RUN composer require drupal/references
-RUN composer require drupal/rules
-RUN composer require drupal/table_element
-RUN composer require drupal/token
-RUN composer require drupal/uuid
-RUN composer require drupal/views
-RUN composer require drupal/views_datasource
-RUN composer require drupal/zurb_responsive_tables
+RUN drush dl 
+RUN drush dl  && drush en admin_menu
+RUN drush dl  && drush en captcha
+RUN drush dl  && drush en ckeditor
+RUN drush dl  && drush en contrib
+RUN drush dl  && drush en ctools
+RUN drush dl  && drush en custom
+RUN drush dl  && drush en devel
+RUN drush dl  && drush en ds
+RUN drush dl  && drush en eck
+RUN drush dl  && drush en elements
+RUN drush dl  && drush en entity
+RUN drush dl  && drush en entityreference
+RUN drush dl  && drush en field_group
+RUN drush dl  && drush en field_permissions
+RUN drush dl  && drush en field_readonly
+RUN drush dl  && drush en imce
+RUN drush dl  && drush en imce_mkdir
+RUN drush dl  && drush en jquery_update
+RUN drush dl  && drush en node_export
+RUN drush dl  && drush en nodeaccess
+RUN drush dl  && drush en overlay_paths
+RUN drush dl  && drush en references
+RUN drush dl  && drush en rules
+RUN drush dl  && drush en table_element
+RUN drush dl  && drush en token
+RUN drush dl  && drush en uuid
+RUN drush dl  && drush en views
+RUN drush dl  && drush en views_datasource
+RUN drush dl  && drush en zurb_responsive_tables
