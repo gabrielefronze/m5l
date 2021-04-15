@@ -1,8 +1,10 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
 RUN apt-get update
-RUN deb http://backports.debian.org/debian-backports squeeze-backports main
-RUN sudo apt-get update && sudo apt-get install drush
+RUN apt-get install -y zip unzip curl php7-cli git
+RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer global require drush/drush
+RUN drush status
 
 RUN drush dl views
 RUN drush dl admin_menu && drush en admin_menu
