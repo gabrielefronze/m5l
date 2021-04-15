@@ -1,7 +1,7 @@
 FROM drupal:7.78-php7.4-fpm-buster
 
 RUN apt-get update
-RUN apt-get install -y drush
+RUN apt-get install -y -t lucid-backports drush
 
 RUN drush dl views
 RUN drush dl admin_menu && drush en admin_menu
