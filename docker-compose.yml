@@ -28,7 +28,7 @@ services:
       - internal
     volumes:
       - /widen/m5l-data:/m5l-data:z
-    entrypoint: /m5l-responder.py "root -q -x"
+    entrypoint: python3 m5l-responder.py "root -q -x"
 
 
   drupal:

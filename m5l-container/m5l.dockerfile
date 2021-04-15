@@ -13,5 +13,6 @@ RUN yum update -y && yum install -y dcmtk-devel
 
 WORKDIR /
 RUN yum -y install --enablerepo="epel" python-pip && yum clean all
+RUN pip install subprocess flask
 ADD ./m5l-responder.py /
 EXPOSE 8888
