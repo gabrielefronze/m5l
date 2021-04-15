@@ -14,5 +14,5 @@ RUN yum update -y && yum install -y dcmtk-devel
 WORKDIR /
 RUN yum -y install --enablerepo="epel" python-pip && yum clean all
 RUN pip install --upgrade pip
-RUN pip install subprocess flask
+RUN pip install flask
 EXPOSE 8888
