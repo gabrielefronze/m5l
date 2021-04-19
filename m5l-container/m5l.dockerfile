@@ -2,7 +2,12 @@ FROM centos:7
 
 RUN yum update -y
 RUN yum install -y epel-release
-RUN yum install -y cmake3
+RUN mkdir -p /tmp/cmake && \
+    pushd /tmp/cmake && \
+    wget 'https://cmake.org/files/v3.9/cmake-3.9.1-Linux-x86_64.sh' && \
+    bash cmake-3.9.1-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir && \
+    popd && \
+    rm -rf /tmp/cmake
 RUN yum install -y root
 
 WORKDIR /tmp
