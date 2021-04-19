@@ -1,7 +1,7 @@
 FROM centos:7
 
 RUN yum update -y
-RUN yum install -y epel-release
+RUN yum install -y epel-release wget
 RUN mkdir -p /tmp/cmake && \
     pushd /tmp/cmake && \
     wget 'https://cmake.org/files/v3.9/cmake-3.9.1-Linux-x86_64.sh' && \
