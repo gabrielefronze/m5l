@@ -61,7 +61,7 @@ services:
     volumes:
       - ./drupal-data:/var/www/html
       - /root/certs:/certs
-      - ./nginx-drupal7.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx-drupal7.conf.2:/etc/nginx/conf.d/default.conf
     networks:
       - external
 
