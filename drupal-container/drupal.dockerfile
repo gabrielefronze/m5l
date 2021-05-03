@@ -39,4 +39,7 @@ RUN drush dl views
 RUN drush dl views_datasource
 RUN drush dl zurb_responsive_tables
 
+RUN drush dl cer
+RUN drush dl module_missing_message_fixer
+
 RUN apt-get install -y zip unzip curl git mc default-mysql-client
