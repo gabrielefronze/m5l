@@ -45,9 +45,9 @@ services:
       - internal
       - external
     volumes:
-      - ./drupal-data/sites/all/modules/custom:/var/www/html/sites/all/modules/custom:z
-      - ./drupal-data/sites/default/settings.php:/var/www/html/sites/default/settings.php:z
-      # - ./drupal-data:/var/www/html:z
+      # - ./drupal-data/sites/all/modules/custom:/var/www/html/sites/all/modules/custom:z
+      # - ./drupal-data/sites/default/settings.php:/var/www/html/sites/default/settings.php:z
+      - ./drupal-data:/var/www/html:z
       - /widen/m5l-data:/m5l-data:z
 
   webserver:
