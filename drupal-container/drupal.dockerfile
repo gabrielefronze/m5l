@@ -38,3 +38,5 @@ RUN drush dl uuid
 RUN drush dl views
 RUN drush dl views_datasource
 RUN drush dl zurb_responsive_tables
+
+RUN apt-get install -y zip unzip curl git mc default-mysql-client
