@@ -45,5 +45,9 @@ RUN drush dl module_missing_message_fixer
 RUN apt-get install -y zip unzip curl git mc default-mysql-client
 
 RUN apt-get install -y sendmail
+WORKDIR /etc/mail
+COPY ./sendmail.mc /etc/mail/sendmail.mc
+RUN m4 sendmail.mc > sendmail.cf
+RUN sendmailconfig
 
 RUN drush dl references
