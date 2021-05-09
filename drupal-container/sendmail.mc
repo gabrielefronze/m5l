@@ -7,7 +7,7 @@ dnl # installed and then performing a
 dnl #
 dnl #     make -C /etc/mail
 dnl #
-include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
+include(`/usr/share/sendmail/cf/m4/cf.m4')dnl
 VERSIONID(`setup for linux')dnl
 OSTYPE(`linux')dnl
 dnl #
