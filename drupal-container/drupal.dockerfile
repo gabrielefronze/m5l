@@ -48,6 +48,6 @@ RUN apt-get install -y sendmail sendmail-cf
 WORKDIR /etc/mail
 COPY ./sendmail.mc /etc/mail/sendmail.mc
 # RUN m4 sendmail.mc > sendmail.cf
-RUN sendmailconfig
+# RUN sendmailconfig
 
 RUN drush dl references
