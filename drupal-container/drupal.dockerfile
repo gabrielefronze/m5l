@@ -42,6 +42,6 @@ RUN drush dl zurb_responsive_tables
 RUN drush dl cer
 RUN drush dl module_missing_message_fixer
 
-RUN apt-get install -y zip unzip curl git mc default-mysql-client
+RUN apt-get install -y mc default-mysql-client
 
 RUN apt-get install -y sendmail sendmail-cf

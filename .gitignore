@@ -1,0 +1,13 @@
+cases/
+certs/
+db_m5l_drupal_1.sql
+drupal-data-broken/
+drupal-data/
+m5l-data
+mysql-data-broken/
+mysql-data-old/
+mysql-data-orig.tar.gz
+mysql-data/
+nginx-drupal7.conf.bad
+old-dumps/
+uploads.ini
