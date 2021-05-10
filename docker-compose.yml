@@ -32,6 +32,7 @@ services:
       - /widen/m5l-data:/m5l-data:z
       - /root/m5l-source:/m5l-source:z
       - ./m5l-container/m5l-responder.py:/m5l-responder.py
+      # entry point for exchange cases between drupal and m5l
       - /root/m5l/drupal-data/sites/default/files/tmp-CAD-local:/m5l-data/drupal/tmp-CAD-local/:z
     entrypoint: python3 /m5l-responder.py "/m5l-source/magic5-src/runCAD.sh"
 
