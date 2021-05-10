@@ -1,11 +1,11 @@
 FROM centos:7
 
 RUN yum update -y
-RUN yum install -y epel-release wget make mc
+RUN yum install -y epel-release wget make
 
 # packages need for convert html to pdf
-RUN yum install -y wkhtmltopdf.x86_64
-RUN yum install -y xorg-x11-server-Xvfb.x86_64
+RUN yum install -y wkhtmltopdf
+RUN yum install -y xorg-x11-server-Xvfb
 
 # install cmake
 RUN mkdir -p /tmp/cmake && \
@@ -15,7 +15,7 @@ RUN mkdir -p /tmp/cmake && \
     popd && \
     rm -rf /tmp/cmake
 
-#install ROOT
+#install ROOT (and extra package mlp)
 RUN yum install -y root root-mlp
 
 WORKDIR /tmp
@@ -32,3 +32,6 @@ RUN yum -y install --enablerepo="epel" python-pip && yum clean all
 RUN pip3 install --upgrade pip
 RUN pip3 install Flask
 EXPOSE 8888
+
+# file manager used by ernesto
+RUN yum install -y mc
