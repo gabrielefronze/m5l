@@ -45,3 +45,5 @@ RUN drush dl module_missing_message_fixer
 RUN apt-get install -y mc default-mysql-client
 
 RUN apt-get install -y sendmail sendmail-cf
+
+RUN apt-get install -y nano vim
