@@ -51,8 +51,8 @@ services:
       - external
     volumes:
       - ./drupal-data:/var/www/html:z
-      - ./drupal-container/sendmail.cf:/etc/mail/sendmail.cf:z
-      - ./drupal-container/sendmail.mc:/etc/mail/sendmail.mc:z
+      # - ./drupal-container/sendmail.cf:/etc/mail/sendmail.cf:z
+      # - ./drupal-container/sendmail.mc:/etc/mail/sendmail.mc:z
       # # - ./drupal-data/sites/all/modules/custom:/var/www/html/sites/all/modules/custom:z
       # # - ./drupal-data/sites/default/settings.php:/var/www/html/sites/default/settings.php:z
       # # - ./drupal-data:/var/www/html:z
