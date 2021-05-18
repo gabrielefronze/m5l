@@ -50,8 +50,8 @@ RUN apt-get install -y nano vim
 
 RUN apt-get install -y yes
 
-RUN apt-get install -y python-pip
+# RUN apt-get install -y python-pip
 
-RUN pip install supervisor
+# RUN pip install supervisor
 
 ENTRYPOINT ["docker-php-entrypoint"]
