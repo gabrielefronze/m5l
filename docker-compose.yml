@@ -52,7 +52,7 @@ services:
       - ./drupal-data:/var/www/html:z
       - ./sendmail-data:/etc/mail:z
       - ./drupal-container/entrypoint.sh:/entrypoint.sh
-    entrypoint: /entrypoint.sh
+    entrypoint: docker-php-entrypoint
 
   webserver:
     image: nginx:1.17.4-alpine
