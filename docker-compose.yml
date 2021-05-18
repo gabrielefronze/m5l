@@ -51,7 +51,7 @@ services:
     volumes:
       - ./drupal-data:/var/www/html:z
       - ./sendmail-data:/etc/mail:z
-    command: bash -c "sendmail -bD & docker-php-entrypoint php-fpm"
+    command: bash -c "yes | sendmailconfig && sendmail -bD & docker-php-entrypoint php-fpm"
     tty: true
 
   webserver:
