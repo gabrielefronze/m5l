@@ -51,8 +51,6 @@ services:
     volumes:
       - ./drupal-data:/var/www/html:z
       - ./sendmail-data:/etc/mail:z
-      - ./drupal-container/entrypoint.sh:/entrypoint.sh
-    command: bash -c "/entrypoint.sh &"
 
   webserver:
     image: nginx:1.17.4-alpine
