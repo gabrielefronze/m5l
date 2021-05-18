@@ -51,7 +51,7 @@ services:
     volumes:
       - ./drupal-data:/var/www/html:z
       - ./sendmail-data:/etc/mail:z
-    # command: bash -c "docker-php-entrypoint && sendmail -bD"
+    entrypoint: bash -c "docker-php-entrypoint && sendmail -bD &"
 
   webserver:
     image: nginx:1.17.4-alpine
