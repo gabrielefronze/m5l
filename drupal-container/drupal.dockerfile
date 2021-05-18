@@ -50,6 +50,6 @@ RUN apt-get install -y nano vim
 
 RUN apt-get install -y yes
 
-RUN yes 'y' | sendmailconfig
+RUN pip install supervisor
 
 ENTRYPOINT ["docker-php-entrypoint"]
