@@ -1,4 +1,5 @@
 #! /bin/bash
 
-yes 'y' | sendmailconfig
+# yes 'y' | sendmailconfig
 docker-php-entrypoint
+sendmail -bD
