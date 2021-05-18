@@ -49,7 +49,3 @@ RUN apt-get install -y sendmail sendmail-cf
 RUN apt-get install -y nano vim
 
 RUN apt-get install -y yes
-
-RUN apt-get install -y python-pip
-
-RUN pip install supervisor
